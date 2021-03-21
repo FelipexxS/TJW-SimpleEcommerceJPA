@@ -1,0 +1,48 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+
+<h:head>
+	<!--  <h:meta charset="UTF-8">
+	<h:link rel="stylesheet" type="text/css" href="Style.css">-->
+	<h:title>Sistema de Ecommerce MVC</h:title>
+</h:head>
+
+<h:body>
+
+	<h1>Registre-se e encontre o que estava procurando!</h1>
+	<h:form>
+		<p:messages id="messages" />
+		<p:panelGrid columns="2">
+			<p:outputLabel for="nomeCliente" value="Nome Cliente:" />
+			<p:inputText id="nomeCliente" value="#{AuthMB.cliente.email}" />
+			
+			<p:outputLabel for="emailCliente" value="Email Cliente:" />
+			<p:inputText id="emailCliente" value="#{AuthMB.cliente.email}" />
+
+			<p:outputLabel for="senha" value="Senha:" />
+			<p:password id="senha" value="#{AuthMB.cliente.pwd}" />
+			
+			<p:outputLabel for="CPFCliente" value="CPF Cliente:" />
+			<p:inputMask id="CPFCliente" mask="999.999.999-99" value="#{AuthMB.cliente.email}" />
+			
+			<p:outputLabel for="enderecoCliente" value="Endereço Cliente:" />
+			<p:inputText id="enderecoCliente" value="#{AuthMB.cliente.email}" />
+			
+			<p:outputLabel for="telefoneCliente" value="Telefone Cliente:"/>
+            <p:inputMask id="telefoneCliente" value="#{maskView.phone}" mask="(99) 9999-99999" validateMask="true"/>
+
+			<p:commandButton type="button" value="Cadastrar"
+				styleClass="ui-button-raised" action="#{AuthMB.sendAuthRout}"
+				ajax="false">
+			</p:commandButton>
+			<p:commandButton type="button" value="Voltar"
+				styleClass="ui-button-raised" action="#{AuthMB.sendAuthRout}"
+				ajax="false">
+			</p:commandButton>
+
+		</p:panelGrid>
+	</h:form>
+</h:body>
+</html>

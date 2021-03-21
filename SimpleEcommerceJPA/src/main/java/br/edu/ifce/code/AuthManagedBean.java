@@ -24,8 +24,11 @@ public class AuthManagedBean {
 		else {
 			return "/store-frontpage";
 		}
-		
-		
+			
+	}
+	
+	public String navigateRegister() {
+		return "/cadastro";
 	}
 	
 	public Cliente getCliente() {

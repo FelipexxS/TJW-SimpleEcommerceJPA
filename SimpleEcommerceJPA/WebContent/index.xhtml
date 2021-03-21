@@ -1,30 +1,38 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
-<!DOCTYPE html>
-<html>
-	<head>
-		<meta charset="UTF-8">
-		<link rel="stylesheet" type="text/css" href="Style.css">
-		<title>Sistema de Ecommerce MVC</title>
-	</head>
-	<body>
-		<!-- <a href="ClienteController?app=listarCliente">SisClientes</a> -->
-		<header class="app-header">
-			<img id="logo" src="assets/images/logo.png" alt="Logo">
-			<div>E-commerce MVC</div>
-		</header>
-		<div class="app-home">
-			<div class="col-1">
-				<h2>Já tem uma conta? Faça login</h2>
-				<a href="ClienteController?app=login" id="login-link">Login</a>
-			</div>
-			
-			<div class="divider"></div>
-			
-			<div class="col-2">
-				<h2>Ainda não tem uma conta? Faça seu cadastro</h2>
-				<a href="ClienteController?app=cadastro" id="signup-link">Cadastre-se</a>
-			</div>
-		</div>
-	</body>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+
+<h:head>
+	<!--  <h:meta charset="UTF-8">
+	<h:link rel="stylesheet" type="text/css" href="Style.css">-->
+	<h:title>Sistema de Ecommerce MVC</h:title>
+</h:head>
+
+<h:body>
+
+	<h1>Entre e encontre o que estava procurando!</h1>
+	<h:form>
+		<p:messages id="messages" />
+		<p:panelGrid columns="4">
+			<p:outputLabel for="emailCliente" value="Email Cliente:" />
+			<p:inputText id="emailCliente" value="#{AuthMB.cliente.email}" />
+
+			<p:outputLabel for="senha" value="Senha:" />
+			<p:password id="senha" value="#{AuthMB.cliente.pwd}" />
+
+			<p:commandButton type="button" value="Entrar"
+				styleClass="ui-button-raised" action="#{AuthMB.sendAuthRout}"
+				ajax="false">
+			</p:commandButton>
+
+			<p:commandLink id="nonAjax" action="#{AuthMB.navigateRegister}"
+				ajax="false">
+				<h:outputText value="Não é cadastrado? Registre-se aqui" />
+			</p:commandLink>
+
+
+		</p:panelGrid>
+	</h:form>
+</h:body>
 </html>

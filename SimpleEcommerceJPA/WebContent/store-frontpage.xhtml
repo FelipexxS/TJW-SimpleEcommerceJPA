@@ -1,0 +1,75 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+
+<h:head>
+	<!--  <h:meta charset="UTF-8">
+	<h:link rel="stylesheet" type="text/css" href="Style.css">-->
+	<h:title>Sistema de Ecommerce MVC</h:title>
+</h:head>
+
+<h:body>
+	<h:form>
+		<div class="card">
+			<h5>Produtos Em Estoque</h5>
+			<p:carousel value="#{carouselView.products}" var="product"
+				responsive="true">
+				<div class="product">
+					<div class="product-grid-item p-p-5">
+						<div class="product-grid-item-top">
+							<div>
+								<i class="pi pi-tag product-category-icon" /> <span
+									class="product-category">#{product.category}</span>
+							</div>
+							<span class="product-badge status-INSTOCK">Em Promoção!</span>
+						</div>
+						<div class="product-grid-item-content">
+							<p:graphicImage name="assets/images/logo.png" />
+							<div class="product-name">#{product.name}</div>
+							<div class="product-description">#{product.description}</div>
+							<p:rating readonly="true" value="5" />
+						</div>
+						<div class="product-grid-item-bottom">
+							<h:outputText value="#{product.price}" styleClass="product-price">
+								<f:convertNumber currencySymbol="$" type="currency" />
+							</h:outputText>
+							<p:commandButton type="button" value="Add To Cart"
+								icon="pi pi-shopping-cart">
+							</p:commandButton>
+						</div>
+					</div>
+				</div>
+			</p:carousel>
+		</div>
+	</h:form>
+
+	<div class="product card">
+		<h:form>
+			<p:dataScroller value="#{dataScrollerView.products}" var="product"
+				chunkSize="10" mode="inline" scrollHeight="500">
+				<f:facet name="header">
+                Itens do Carrinho
+            </f:facet>
+
+				<div class="product">
+					<div class="product-list-item p-p-5">
+						<p:graphicImage name="assets/images/logo.png" />
+						<div class="product-list-detail">
+							<div class="product-name">#{product.name}</div>
+							<i class="pi pi-tag product-category-icon" /><span
+								class="product-category">#{product.category}</span>
+						</div>
+						<div class="product-list-action">
+							<h:outputText value="#{product.price}" styleClass="product-price">
+								<f:convertNumber currencySymbol="R$" type="currency" />
+							</h:outputText>
+							<p:commandButton value="Comprar" icon="pi pi-success"></p:commandButton>
+						</div>
+					</div>
+				</div>
+			</p:dataScroller>
+		</h:form>
+	</div>
+</h:body>
+</html>
