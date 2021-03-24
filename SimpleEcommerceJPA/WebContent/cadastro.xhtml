@@ -14,35 +14,60 @@
 	<h1>Registre-se e encontre o que estava procurando!</h1>
 	<h:form>
 		<p:messages id="messages" />
-		<p:panelGrid columns="2">
-			<p:outputLabel for="nomeCliente" value="Nome Cliente:" />
-			<p:inputText id="nomeCliente" value="#{AuthMB.cliente.email}" />
-			
-			<p:outputLabel for="emailCliente" value="Email Cliente:" />
-			<p:inputText id="emailCliente" value="#{AuthMB.cliente.email}" />
+		<p:panelGrid columns="6" style="margin-bottom: 10px;">
+			<div class="p-field">
+				<p:outputLabel for="nomeCliente" value="Nome Cliente:" />
+				<p:inputText id="nomeCliente"
+					value="#{RegisterMB.cliente.nome_cliente}" />
 
-			<p:outputLabel for="senha" value="Senha:" />
-			<p:password id="senha" value="#{AuthMB.cliente.pwd}" />
-			
-			<p:outputLabel for="CPFCliente" value="CPF Cliente:" />
-			<p:inputMask id="CPFCliente" mask="999.999.999-99" value="#{AuthMB.cliente.email}" />
-			
-			<p:outputLabel for="enderecoCliente" value="Endereço Cliente:" />
-			<p:inputText id="enderecoCliente" value="#{AuthMB.cliente.email}" />
-			
-			<p:outputLabel for="telefoneCliente" value="Telefone Cliente:"/>
-            <p:inputMask id="telefoneCliente" value="#{maskView.phone}" mask="(99) 9999-99999" validateMask="true"/>
+			</div>
+			<div class="p-field">
+				<p:outputLabel for="emailCliente" value="Email Cliente:" />
+				<p:inputText id="emailCliente" value="#{RegisterMB.cliente.email}" />
 
-			<p:commandButton type="button" value="Cadastrar"
-				styleClass="ui-button-raised" action="#{AuthMB.sendAuthRout}"
-				ajax="false">
-			</p:commandButton>
-			<p:commandButton type="button" value="Voltar"
-				styleClass="ui-button-raised" action="#{AuthMB.sendAuthRout}"
-				ajax="false">
-			</p:commandButton>
+			</div>
 
+			<div class="p-field">
+				<p:outputLabel for="senha" value="Senha:" />
+				<p:password id="senha" value="#{RegisterMB.cliente.pwd}" />
+
+			</div>
+
+			<div class="p-field">
+				<p:outputLabel for="CPFCliente" value="CPF Cliente:" />
+				<p:inputMask id="CPFCliente" mask="999.999.999-99"
+					value="#{RegisterMB.cliente.CPF}" />
+			</div>
+
+			<div class="p-field">
+				<p:outputLabel for="enderecoCliente" value="Endereço Cliente:" />
+				<p:inputText id="enderecoCliente"
+					value="#{RegisterMB.endereco.logradouro}" />
+
+			</div>
+
+			<div class="p-field">
+				<p:outputLabel for="cepCliente" value="Endereço Cliente:" />
+				<p:inputMask id="cepCliente" mask="99999-999"
+					value="#{RegisterMB.endereco.cep}" />
+
+			</div>
+
+			<div class="p-field">
+				<p:outputLabel for="telefoneCliente" value="Telefone Cliente:" />
+				<p:inputMask id="telefoneCliente"
+					value="#{RegisterMB.telefone.numTelefone}" mask="(99) 9999-99999"
+					validateMask="true" />
+			</div>
 		</p:panelGrid>
+		<p:commandButton type="submit" value="Cadastrar"
+			styleClass="ui-button-raised" action="#{RegisterMB.registrar}"
+			ajax="false">
+		</p:commandButton>
+		<p:commandButton type="submit" value="Voltar"
+			styleClass="ui-button-raised" action="#{RegisterMB.navigateBack}"
+			ajax="false">
+		</p:commandButton>
 	</h:form>
 </h:body>
 </html>

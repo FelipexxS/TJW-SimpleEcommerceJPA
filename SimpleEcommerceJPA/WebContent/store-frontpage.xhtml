@@ -13,25 +13,25 @@
 	<h:form>
 		<div class="card">
 			<h5>Produtos Em Estoque</h5>
-			<p:carousel value="#{carouselView.products}" var="product"
+			<p:carousel value="#{storeMB.getListProduto}" var="product"
 				responsive="true">
 				<div class="product">
 					<div class="product-grid-item p-p-5">
 						<div class="product-grid-item-top">
 							<div>
 								<i class="pi pi-tag product-category-icon" /> <span
-									class="product-category">#{product.category}</span>
+									class="product-category">#{storeMB.product.departamento}</span>
 							</div>
 							<span class="product-badge status-INSTOCK">Em Promoção!</span>
 						</div>
 						<div class="product-grid-item-content">
 							<p:graphicImage name="assets/images/logo.png" />
-							<div class="product-name">#{product.name}</div>
-							<div class="product-description">#{product.description}</div>
+							<div class="product-name">#{storeMB.product.nome_produto}</div>
+							<div class="product-description"></div>
 							<p:rating readonly="true" value="5" />
 						</div>
 						<div class="product-grid-item-bottom">
-							<h:outputText value="#{product.price}" styleClass="product-price">
+							<h:outputText value="#{storeMB.produto.preco_produto}" styleClass="product-price">
 								<f:convertNumber currencySymbol="$" type="currency" />
 							</h:outputText>
 							<p:commandButton type="button" value="Add To Cart"
