@@ -37,11 +37,21 @@ public class ClienteDao {
 				cliente.setTelefone(telefone);
 			}
 			
-			manager.persist(endereco);
-			cliente.setEndereco(endereco);
+			if (endereco.getLogradouro() != null) {
+				manager.persist(endereco);
+				cliente.setEndereco(endereco);
+			}
+			
 			manager.persist(cliente);
-			CarrinhoDao carrinhodao = new CarrinhoDao();
-			carrinhodao.addCarrinho(cliente);
+//			CarrinhoDao carrinhodao = new CarrinhoDao();
+//			if (!carrinhodao.addCarrinho(cliente)) {
+//				System.out.println("Não criou o carrinho");
+//			}
+			
+			Carrinho novoCarrinho = new Carrinho();
+			novoCarrinho.setCarrinho_cliente(cliente);
+			novoCarrinho.setValor_total(0.00);
+			manager.persist(novoCarrinho);
 			manager.getTransaction().commit();
 			manager.close();
 			factory.close();

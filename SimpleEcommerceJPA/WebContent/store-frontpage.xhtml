@@ -12,64 +12,49 @@
 <h:body>
 	<h:form>
 		<div class="card">
-			<h5>Produtos Em Estoque</h5>
-			<p:carousel value="#{storeMB.getListProduto}" var="product"
-				responsive="true">
-				<div class="product">
-					<div class="product-grid-item p-p-5">
-						<div class="product-grid-item-top">
-							<div>
-								<i class="pi pi-tag product-category-icon" /> <span
-									class="product-category">#{storeMB.product.departamento}</span>
-							</div>
-							<span class="product-badge status-INSTOCK">Em Promoção!</span>
-						</div>
-						<div class="product-grid-item-content">
-							<p:graphicImage name="assets/images/logo.png" />
-							<div class="product-name">#{storeMB.product.nome_produto}</div>
-							<div class="product-description"></div>
-							<p:rating readonly="true" value="5" />
-						</div>
-						<div class="product-grid-item-bottom">
-							<h:outputText value="#{storeMB.produto.preco_produto}" styleClass="product-price">
-								<f:convertNumber currencySymbol="$" type="currency" />
-							</h:outputText>
-							<p:commandButton type="button" value="Add To Cart"
-								icon="pi pi-shopping-cart">
-							</p:commandButton>
-						</div>
-					</div>
-				</div>
-			</p:carousel>
+			<p:dataTable var="produto" value="#{storeMB.produtos}">
+				<p:column headerText="Produto">
+					<h:outputText value="#{produto.nome_produto}" />
+				</p:column>
+
+				<p:column headerText="Preço">
+					<h:outputText value="#{produto.preco_produto}" />
+				</p:column>
+
+				<p:column headerText="Departamento">
+					<h:outputText value="#{produto.departamento}" />
+				</p:column>
+
+				<!--  <p:column headerText="Ação">
+					<p:commandButton type="button" value="Voltar"
+						styleClass="ui-button-raised" action="#{storeMB.produto}"
+						ajax="false">
+					</p:commandButton>
+				</p:column>-->
+			</p:dataTable>
 		</div>
 	</h:form>
 
-	<div class="product card">
-		<h:form>
-			<p:dataScroller value="#{dataScrollerView.products}" var="product"
-				chunkSize="10" mode="inline" scrollHeight="500">
-				<f:facet name="header">
-                Itens do Carrinho
-            </f:facet>
+	<!-- <h:form>
+		<div class="card">
+			<p:dataTable var="product" value="#{dtBasicView.products}">
+				<p:column headerText="Code">
+					<h:outputText value="#{product.code}" />
+				</p:column>
 
-				<div class="product">
-					<div class="product-list-item p-p-5">
-						<p:graphicImage name="assets/images/logo.png" />
-						<div class="product-list-detail">
-							<div class="product-name">#{product.name}</div>
-							<i class="pi pi-tag product-category-icon" /><span
-								class="product-category">#{product.category}</span>
-						</div>
-						<div class="product-list-action">
-							<h:outputText value="#{product.price}" styleClass="product-price">
-								<f:convertNumber currencySymbol="R$" type="currency" />
-							</h:outputText>
-							<p:commandButton value="Comprar" icon="pi pi-success"></p:commandButton>
-						</div>
-					</div>
-				</div>
-			</p:dataScroller>
-		</h:form>
-	</div>
+				<p:column headerText="Name">
+					<h:outputText value="#{product.name}" />
+				</p:column>
+
+				<p:column headerText="Category">
+					<h:outputText value="#{product.category}" />
+				</p:column>
+
+				<p:column headerText="Quantity">
+					<h:outputText value="#{product.quantity}" />
+				</p:column>
+			</p:dataTable>
+		</div>
+	</h:form>-->
 </h:body>
 </html>

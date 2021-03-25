@@ -14,7 +14,7 @@ public class ProdutoDao {
 	EntityManager manager = factory.createEntityManager();
 	
 	public List<Produto> getAllProdutos() {
-		return manager.createQuery("SELECT p FROM produto p", Produto.class).getResultList();
+		return manager.createQuery("SELECT p FROM Produto p", Produto.class).getResultList();
 	}
 	
 }

@@ -3,18 +3,25 @@ package br.edu.ifce.dao;
 import java.util.Collection;
 import java.util.Iterator;
 
+import javax.persistence.EntityManager;
+import javax.persistence.EntityManagerFactory;
 import javax.persistence.NoResultException;
+import javax.persistence.Persistence;
 
 import br.edu.ifce.model.Carrinho;
 import br.edu.ifce.model.Cliente;
 import br.edu.ifce.model.Produto;
-import br.edu.ifce.utils.JPAUtil;
+
 
 public class CarrinhoDao {
 
+	EntityManagerFactory factory = Persistence.createEntityManagerFactory("TJW");
+	EntityManager manager = factory.createEntityManager();
+	
 	public Carrinho getCarrinhoByCliente(Cliente cliente) {
+		
 		try {
-			Carrinho carrinho = (Carrinho) JPAUtil.getEntityManager()
+			Carrinho carrinho = (Carrinho) manager
 					.createQuery("SELECT c from Carrinho c where c.carrinho_cliente = :cliente")
 					.setParameter("cliente", cliente).getSingleResult();
 			return carrinho;
@@ -28,7 +35,7 @@ public class CarrinhoDao {
 			Carrinho novoCarrinho = new Carrinho();
 			novoCarrinho.setCarrinho_cliente(cliente);
 			novoCarrinho.setValor_total(0.00);
-			JPAUtil.getEntityManager().persist(novoCarrinho);
+			manager.persist(novoCarrinho);
 			return true;
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -40,9 +47,9 @@ public class CarrinhoDao {
 		try {
 
 			Carrinho carrinhoExc = getCarrinhoByCliente(cliente);
-			JPAUtil.getEntityManager().getTransaction().begin();
+			manager.getTransaction().begin();
 			carrinhoExc.getItens_carrinho().add(produto);
-			JPAUtil.getEntityManager().getTransaction().commit();
+			manager.getTransaction().commit();
 			
 			return true;
 
@@ -65,9 +72,9 @@ public class CarrinhoDao {
 				}
 			}
 			
-			JPAUtil.getEntityManager().getTransaction().begin();
+			manager.getTransaction().begin();
 			carrinhoExc.setItens_carrinho(itensCarrinho);
-			JPAUtil.getEntityManager().getTransaction().commit();
+			manager.getTransaction().commit();
 			
 			return true;
 
