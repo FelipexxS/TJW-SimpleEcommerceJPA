@@ -13,15 +13,17 @@ import br.edu.ifce.dao.ProdutoDao;
 import br.edu.ifce.model.Carrinho;
 import br.edu.ifce.model.Produto;
 
-@ManagedBean(name = "storeMB")
+@ManagedBean(name = "StoreMB")
 @ViewScoped
 public class StoreManagedBean {
 	
 	List<Produto> produtos = new ArrayList<Produto>();
 	ProdutoDao produtoDao = new ProdutoDao();
+	List<Carrinho> itensCarrinho = new ArrayList<Carrinho>();
 	CarrinhoDao carrinhoDao = new CarrinhoDao();
 	Carrinho carrinho = new Carrinho();
 	Produto produto = new Produto();
+	String nomeCliente;
 	
 	@ManagedProperty("#{AuthMB}")
 	private AuthManagedBean authManagedBean;
@@ -36,14 +38,24 @@ public class StoreManagedBean {
 
 	@PostConstruct
 	public void onInit() {
+		
 		this.getListProduto();
+		setNomeCliente(authManagedBean.getCliente().getNome_cliente());
+		
+		if (getListCarrinho() != null) {
+			itensCarrinho = getListCarrinho();
+		}
 	}
 	
 	public void getListProduto() {
 		this.produtos = produtoDao.getAllProdutos();
 	}
 	
-	public void adicionaCarrinho() {
+	public List<Carrinho> getListCarrinho() {
+		return carrinhoDao.getAllItens();
+	}
+	
+	public void addItem() {
 		carrinhoDao.inserirItemCarrinho(produto, authManagedBean.getCliente());
 	}
 
@@ -70,6 +82,24 @@ public class StoreManagedBean {
 	public void setProduto(Produto produto) {
 		this.produto = produto;
 	}
+
+	public List<Carrinho> getItensCarrinho() {
+		return itensCarrinho;
+	}
+
+	public void setItensCarrinho(List<Carrinho> itensCarrinho) {
+		this.itensCarrinho = itensCarrinho;
+	}
+
+	public String getNomeCliente() {
+		return nomeCliente;
+	}
+
+	public void setNomeCliente(String nomeCliente) {
+		this.nomeCliente = nomeCliente;
+	}
+	
+	
 	
 	
 }

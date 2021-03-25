@@ -10,9 +10,10 @@
 </h:head>
 
 <h:body>
+	<h1>Seja Bem Vindo <h:outputText value="#{StoreMB.nomeCliente}"/></h1>
 	<h:form>
 		<div class="card">
-			<p:dataTable var="produto" value="#{storeMB.produtos}">
+			<p:dataTable var="produto" value="#{StoreMB.produtos}">
 				<p:column headerText="Produto">
 					<h:outputText value="#{produto.nome_produto}" />
 				</p:column>
@@ -25,36 +26,32 @@
 					<h:outputText value="#{produto.departamento}" />
 				</p:column>
 
-				<!--  <p:column headerText="Ação">
-					<p:commandButton type="button" value="Voltar"
-						styleClass="ui-button-raised" action="#{storeMB.produto}"
+				<p:column headerText="Ação">
+					<p:commandButton type="button" value="Comprar"
+						styleClass="ui-button-raised" action="#{storeMB.addItem}"
 						ajax="false">
 					</p:commandButton>
-				</p:column>-->
+				</p:column>
 			</p:dataTable>
 		</div>
 	</h:form>
 
-	<!-- <h:form>
+	<h:form>
 		<div class="card">
-			<p:dataTable var="product" value="#{dtBasicView.products}">
-				<p:column headerText="Code">
-					<h:outputText value="#{product.code}" />
+			<p:dataTable var="item" value="#{StoreMB.itensCarrinho}">
+				<p:column headerText="Itens do Carrinho">
+					<h:outputText value="#{item.id_carrinho}" />
 				</p:column>
 
 				<p:column headerText="Name">
-					<h:outputText value="#{product.name}" />
+					<h:outputText value="#{item}" />
 				</p:column>
 
 				<p:column headerText="Category">
-					<h:outputText value="#{product.category}" />
-				</p:column>
-
-				<p:column headerText="Quantity">
-					<h:outputText value="#{product.quantity}" />
+					<h:outputText value="#{item}" />
 				</p:column>
 			</p:dataTable>
 		</div>
-	</h:form>-->
+	</h:form>
 </h:body>
 </html>

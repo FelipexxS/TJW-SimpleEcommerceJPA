@@ -2,6 +2,7 @@ package br.edu.ifce.dao;
 
 import java.util.Collection;
 import java.util.Iterator;
+import java.util.List;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
@@ -82,5 +83,9 @@ public class CarrinhoDao {
 			e.printStackTrace();
 			return false;
 		}
+	}
+	
+	public List<Carrinho> getAllItens() {
+		return manager.createQuery("SELECT c FROM Carrinho c LEFT JOIN FETCH c.itens_carrinho").getResultList();
 	}
 }
