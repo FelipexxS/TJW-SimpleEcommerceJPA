@@ -11,6 +11,7 @@ import javax.faces.bean.ViewScoped;
 import br.edu.ifce.dao.CarrinhoDao;
 import br.edu.ifce.dao.ProdutoDao;
 import br.edu.ifce.model.Carrinho;
+import br.edu.ifce.model.ItemCarrinho;
 import br.edu.ifce.model.Produto;
 
 @ManagedBean(name = "StoreMB")
@@ -19,7 +20,7 @@ public class StoreManagedBean {
 	
 	List<Produto> produtos = new ArrayList<Produto>();
 	ProdutoDao produtoDao = new ProdutoDao();
-	List<Carrinho> itensCarrinho = new ArrayList<Carrinho>();
+	List<ItemCarrinho> itensCarrinho = new ArrayList<ItemCarrinho>();
 	CarrinhoDao carrinhoDao = new CarrinhoDao();
 	Carrinho carrinho = new Carrinho();
 	Produto produto = new Produto();
@@ -42,20 +43,20 @@ public class StoreManagedBean {
 		this.getListProduto();
 		setNomeCliente(authManagedBean.getCliente().getNome_cliente());
 		
-		if (getListCarrinho() != null) {
-			itensCarrinho = getListCarrinho();
-		}
+//		if (getListCarrinho() != null) {
+//			itensCarrinho = getListCarrinho();
+//		}
 	}
 	
 	public void getListProduto() {
 		this.produtos = produtoDao.getAllProdutos();
 	}
 	
-	public List<Carrinho> getListCarrinho() {
-		return carrinhoDao.getAllItens();
+	public List<ItemCarrinho> getListCarrinho() {
+		return carrinhoDao.getItensByCart(carrinho);
 	}
 	
-	public void addItem() {
+	public void addItem(Produto produto) {
 		carrinhoDao.inserirItemCarrinho(produto, authManagedBean.getCliente());
 	}
 
@@ -83,11 +84,11 @@ public class StoreManagedBean {
 		this.produto = produto;
 	}
 
-	public List<Carrinho> getItensCarrinho() {
+	public List<ItemCarrinho> getItensCarrinho() {
 		return itensCarrinho;
 	}
 
-	public void setItensCarrinho(List<Carrinho> itensCarrinho) {
+	public void setItensCarrinho(List<ItemCarrinho> itensCarrinho) {
 		this.itensCarrinho = itensCarrinho;
 	}
 

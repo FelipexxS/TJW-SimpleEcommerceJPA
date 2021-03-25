@@ -11,6 +11,7 @@
   	<class>br.edu.ifce.model.Telefone</class>
   	<class>br.edu.ifce.model.Produto</class>
   	<class>br.edu.ifce.model.Carrinho</class>
+  	<class>br.edu.ifce.model.ItemCarrinho</class>
   	<properties>
   		
   		 <!-- atualiza o banco, gera as tabelas se for preciso -->

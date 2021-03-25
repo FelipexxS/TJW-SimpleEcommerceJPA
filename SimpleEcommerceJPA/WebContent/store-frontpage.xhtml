@@ -27,31 +27,31 @@
 				</p:column>
 
 				<p:column headerText="Ação">
-					<p:commandButton type="button" value="Comprar"
-						styleClass="ui-button-raised" action="#{storeMB.addItem}"
+					<p:commandButton type="submit" value="Comprar"
+						styleClass="ui-button-raised" action="#{StoreMB.addItem(produto)}"
 						ajax="false">
 					</p:commandButton>
 				</p:column>
 			</p:dataTable>
 		</div>
 	</h:form>
-
-	<h:form>
-		<div class="card">
-			<p:dataTable var="item" value="#{StoreMB.itensCarrinho}">
-				<p:column headerText="Itens do Carrinho">
-					<h:outputText value="#{item.id_carrinho}" />
-				</p:column>
-
-				<p:column headerText="Name">
-					<h:outputText value="#{item}" />
-				</p:column>
-
-				<p:column headerText="Category">
-					<h:outputText value="#{item}" />
-				</p:column>
-			</p:dataTable>
-		</div>
-	</h:form>
+	<h:panelGroup value="#{StoreMB.itensCarrinho != null}"></h:panelGroup>
+		<h:form>
+			<div class="card">
+				<p:dataTable var="item" value="#{StoreMB.itensCarrinho}">
+					<p:column headerText="Itens do Carrinho">
+						<h:outputText value="#{item.item_carrinho}" />
+					</p:column>
+	
+					<p:column headerText="Name">
+						<h:outputText value="#{item.produto}" />
+					</p:column>
+	
+					<p:column headerText="Category">
+						<h:outputText value="#{item}" />
+					</p:column>
+				</p:dataTable>
+			</div>
+		</h:form>
 </h:body>
 </html>
